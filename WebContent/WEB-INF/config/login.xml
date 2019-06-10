@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<login>
+	<datasource>admin</datasource>
+	<usertable>admin</usertable>
+	<loginid>name</loginid>
+	<password>password</password>
+	<msg>用户名或密码出错！</msg>
+</login>

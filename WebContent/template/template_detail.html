@@ -1,0 +1,47 @@
+
+
+<div id="detail-container">
+	<table id="form" class="table table-bordered">
+	  <tr>
+	    <th>名称</th>
+	    <td><input v-model="detail.name"></td>
+	  </tr>
+	  <tr>
+	    <th>显示名称</th>
+	    <td><input v-model="detail.display_name"></td>
+	  </tr>
+	  <tr>
+	    <th>服务路径</th>
+	    <td><input v-model="detail.service_url" style="width:400px;"></td>
+	  </tr>
+	  <tr>
+	  	<td colspan="2">
+	  		<button action="update">修改</button><button action="generateReport">生成报表</button><button @click="exports">导出</button>
+	  	</td>
+	  </tr>
+	</table>
+	
+	<div id="cols-div">
+		<div id="cols_toolbar">
+			<button @click="add">增加列</button>
+		</div>
+		<jxiaui-datagrid class="table" ref="colsTable">
+	         <jxiaui-datagrid-item label="列名">
+	         	<template v-slot="row">
+	         		<input v-model="row.name">
+	         	</template>
+	         </jxiaui-datagrid-item>
+	         <jxiaui-datagrid-item label="对应字段">
+	         	<template v-slot="row">
+	         		<input v-model="row.field">
+	         	</template>
+	         </jxiaui-datagrid-item>
+	         <jxiaui-datagrid-item label="操作">
+	             <template v-slot:default="row">
+	                 <button @click="save(row)">保存</button>
+	             </template>
+	         </jxiaui-datagrid-item>
+	     </jxiaui-datagrid>
+	</div>
+</div>
+

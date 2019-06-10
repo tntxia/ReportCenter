@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project name="ReportCenter" default="publish" basedir=".">
+	
+	<property file="build.properties" />
+	<property name="temp" value="${basedir}\temp"></property>
+	<property name="tomcat.home" value="D:\tomcat"/>
+	<property name="lib.dir"    value="${basedir}/WebContent/WEB-INF/lib"/>
+	
+	<path id="compile.classpath">
+		<fileset dir="${tomcat.home}/lib">
+			<include name="*.jar"/>
+		</fileset>
+	    <fileset dir="${lib.dir}">   
+	        <include name="*.jar"/>   
+	    </fileset>   
+	</path>
+	
+	<!-- 初始化创建文件夹   -->
+	<target name="init">
+		<mkdir dir="${temp}"/>
+		<mkdir dir="dist"/>
+		<mkdir dir="dist/jar"/>
+	</target>
+	
+	<target name="compile"  depends="init">
+		<javac srcdir="src/java" destdir="${temp}" includeantruntime="on" encoding="UTF-8" debug="on">
+			<classpath refid="compile.classpath"></classpath>
+		</javac>
+	</target>
+	
+	<target name="publish" depends="compile">
+		<jar destfile="dist/jar/ReportCenter.jar">
+			<fileset dir="${temp}"></fileset>
+		</jar>
+	</target>
+</project>

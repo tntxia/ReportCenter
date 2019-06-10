@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<db>
+	<datasource name="default">
+		<url>jdbc:h2:tcp://webserver:9394/D:\h2_db\report</url>
+		<user>sa</user>
+		<password>sa</password>
+		<driver>org.h2.Driver</driver>
+	</datasource>
+</db>

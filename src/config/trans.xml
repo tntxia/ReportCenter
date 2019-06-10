@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trans>
+	<trans-list>
+		<trans name="file_center">
+			<host>webserver</host>
+			<port>8890</port>
+			<context-path>file_center</context-path>
+		</trans>
+	</trans-list>
+</trans>

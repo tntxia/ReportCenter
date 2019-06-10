@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mvcList>
+	<mvcView url="index.mvc">
+		<title>报表模板管理</title>
+		<isWholePage>true</isWholePage>
+		<stylesheets>
+			<stylesheet>/static/lib/bootstrap/css/bootstrap.css</stylesheet>
+			<stylesheet>/static/lib/bootstrap-plus/css/bootstrap.nav.css</stylesheet>
+			<stylesheet>css/style.css</stylesheet>
+		</stylesheets>
+		<scripts>
+			<script>/static/lib/jquery/jquery.js</script>
+			<script>/static/lib/vue/vue.js</script>
+			<script>/static/lib/bootstrap/js/bootstrap.js</script>
+			<script>/static/lib/bootstrap-plus/js/bootstrap-utils.js</script>
+			<script>/static/lib/bootstrap-plus/js/bootstrap.grid.js</script>
+			<script>/static/lib/jxiaui/js/jxiaui.js</script>
+			<script>/static/lib/jxiaui/0.1/dist/jxiaui.js</script>
+			<script>/static/lib/module_route/module_route.js</script>
+			<script>js/index.js</script>
+		</scripts>
+		<templates>
+			<template>index.ftl</template>
+		</templates>
+	</mvcView>
+	
+	<mvcView url="view.mvc">
+		<title>查看报表</title>
+		<isWholePage>true</isWholePage>
+		<stylesheets>
+			<stylesheet>/static/lib/bootstrap/css/bootstrap.css</stylesheet>
+			<stylesheet>/static/lib/bootstrap-plus/css/bootstrap.nav.css</stylesheet>
+		</stylesheets>
+		<scripts>
+			<script>/static/lib/jquery/jquery.js</script>
+			<script>js/view.js</script>
+		</scripts>
+		<templates>
+			<template>view.ftl</template>
+		</templates>
+	</mvcView>
+
+</mvcList>

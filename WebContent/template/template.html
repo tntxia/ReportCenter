@@ -1,0 +1,28 @@
+
+<div id="template-app">
+	<div id="form">
+		<button @click="add">增加报表模板</button> 
+		<button @click="toImport">导入</button>
+		<input type="file" ref="hiddenFileInput" @change="uploadFile" style="display:none;"> 
+		
+	</div>
+	<div id="datagrid">
+		<jxiaui-datagrid class="table" ref="templateList">
+			<jxiaui-datagrid-item label="名称" field="name">
+				<template v-slot="row">
+					<a :href="'#template_detail?id='+row.id">{{row.name}}</a>
+				</template>
+	        </jxiaui-datagrid-item>
+	        <jxiaui-datagrid-item label="显示名称" field="display_name">
+	        </jxiaui-datagrid-item>
+	        <jxiaui-datagrid-item label="服务地址" field="service_url">
+	        </jxiaui-datagrid-item>
+	        <jxiaui-datagrid-item label="操作">
+	        	<template v-slot="row">
+					<button @click="del(row)">删除</button>
+					<button @click="exports(row)">导出</button>
+				</template>
+	        </jxiaui-datagrid-item>
+		</jxiaui-datagrid>
+	</div>
+</div>
