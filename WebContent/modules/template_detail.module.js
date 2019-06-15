@@ -11,43 +11,6 @@ exports.init = function(){
 	
 	var id = router.getParam('id');
 	
-//	$("#form").buildform({
-//		url:'template!detail.do?id='+id,
-//		actions:{
-//			update:function(){
-//				var params = this.getParamMap();
-//				$.ajax({
-//					url:'template!update.do',
-//					type:'post',
-//					data:params
-//				}).done(function(data){
-//					if(data.success){
-//						alert("操作成功");
-//					}else{
-//						alert("操作失败");
-//					}
-//				}).fail(data=>{
-//					alert("操作异常");
-//				})
-//			},
-//			generateReport:function(){
-//				$.ajax({
-//					url:'template!generate.do',
-//					type:'post',
-//					data:{id}
-//				}).done(function(data){
-//					if(data.success){
-//						window.open("view.mvc?id="+data.uuid);
-//					}else{
-//						alert("操作失败");
-//					}
-//				}).fail(data=>{
-//					alert("操作异常");
-//				})
-//			}
-//		}
-//	});
-	
 	new Vue({
 		el: '#detail-container',
 		data: {
@@ -73,6 +36,36 @@ exports.init = function(){
 					me.detail = res;
 					let cols = res.cols;
 					me.$refs["colsTable"].setRows(cols);
+				})
+			},
+			update() {
+				let param = this.detail;
+				$.ajax({
+					url: 'template!update.do',
+					data: param
+				}).done(res=> {
+					if (res.success) {
+						alert("修改成功");
+					}else {
+						alert("修改失败");
+					}
+				}).fail(e=> {
+					console.error(e);
+				});
+			},
+			generateReport:function(){
+				$.ajax({
+					url:'template!generate.do',
+					type:'post',
+					data:{id}
+				}).done(function(data){
+					if(data.success){
+						window.open("view.mvc?id="+data.uuid);
+					}else{
+						alert("操作失败");
+					}
+				}).fail(data=>{
+					alert("操作异常");
 				})
 			},
 			add() {
