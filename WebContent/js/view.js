@@ -41,24 +41,12 @@ function loadDetail(id) {
 		}else if(data.status=="finish"){
 			statusShow = "完成";
 			$("#download-div").empty();
-			if(data.file_id){
-				let filecenter = window.systemInfo.filecenter;
-				let host = filecenter.host;
-				let port = filecenter.port;
-				if(!port) {
-					port = "80"
-				}
-				let contextPath = filecenter.contextPath;
-				let downloadPath = "http://" + host + ":" + port + "/" + contextPath
-				var a = $("<a>",{
-					text:'点击下载',
-					href: downloadPath + "/file!download.do?uuid="+data.file_id,
-					"target":"_blank"
-				});
-				
-				$("#download-div").append(a);
-			}
-			return;
+			var a = $("<a>",{
+				text:'点击下载',
+				href: "report!download.do?id="+data.id,
+				"target":"_blank"
+			});
+			$("#download-div").append(a);
 		}else if(data.status=="exception") {
 			statusShow = "异常";
 		}

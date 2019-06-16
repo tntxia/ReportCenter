@@ -9,6 +9,7 @@ import com.tntxia.report.service.ReportService;
 import com.tntxia.report.service.TemplateService;
 import com.tntxia.web.mvc.BaseAction;
 import com.tntxia.web.mvc.WebRuntime;
+import com.tntxia.web.mvc.view.FileView;
 
 public class ReportAction extends BaseAction {
 	
@@ -41,13 +42,18 @@ public class ReportAction extends BaseAction {
 	}
 	
 	public Map<String,Object> detail(WebRuntime runtime) throws Exception{
-		
 		String uuid = runtime.getParam("id");
-		
 		String sql = "select * from report where id = ?";
-		
 		return dbManager.queryForMap(sql, new Object[] {uuid},true);	
-		
+	}
+	
+	public FileView download(WebRuntime runtime) throws Exception{
+		String uuid = runtime.getParam("id");
+		String sql = "select file_path from report where id = ?";
+		String filePath = dbManager.getString(sql, new Object[] {uuid});
+		FileView fileView = new FileView();
+		fileView.setFilePath(filePath);
+		return fileView;
 	}
 
 }

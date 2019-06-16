@@ -1,19 +1,15 @@
 package com.tntxia.report.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import com.alibaba.fastjson.JSON;
 import com.tntxia.dbmanager.DBManager;
 import com.tntxia.excel.ExcelData;
 import com.tntxia.excel.ExcelRow;
 import com.tntxia.excel.ExcelUtils;
 import com.tntxia.httptrans.HttpTrans;
-import com.tntxia.httptrans.HttpTransfer;
-import com.tntxia.httptrans.HttpTransferFactory;
 import com.tntxia.web.mvc.service.CommonService;
 
 public class ReportService extends CommonService{
@@ -37,9 +33,9 @@ public class ReportService extends CommonService{
 		dbManager.update(sql,new Object[] {status,uuid});
 	}
 	
-	public void updateReportFileId(String reportId,String fileId) throws Exception {
-		String sql = "update report set file_id=? where id = ?";
-		dbManager.update(sql,new Object[] {fileId,reportId});
+	public void updateReportFilePath(String reportId,String filePath) throws Exception {
+		String sql = "update report set file_path=? where id = ?";
+		dbManager.update(sql,new Object[] {filePath,reportId});
 	}
 	
 	public String generate(Map<String,Object> template,List<?> colList) throws Exception {
@@ -83,14 +79,8 @@ public class ReportService extends CommonService{
 					
 					updateReportStatus(uuid, "file");
 					String excelPath;
-					
 					excelPath = ExcelUtils.makeCommonExcel(reportName, cols, data);
-					HttpTransfer trans = HttpTransferFactory.generate("file_center");
-					Map<String,String> params = new HashMap<String,String>();
-					params.put("uuid", uuid);
-					String result = trans.uploadFile("file!upload", excelPath, params);
-					Map map = (Map) JSON.parse(result);
-					updateReportFileId(uuid, (String) map.get("uuid"));
+					updateReportFilePath(uuid, excelPath);
 					updateReportStatus(uuid, "finish");
 				}catch(Exception ex) {
 					ex.printStackTrace();

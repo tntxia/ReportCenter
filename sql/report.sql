@@ -2,7 +2,7 @@ create table report(
 	id varchar(32) not null,
 	name varchar(50),
 	report_type varchar(20),
-	file_id varchar(50),
+	file_path varchar(500),
 	progress int,
 	status varchar(50),
 	create_time datetime,
