@@ -23,8 +23,8 @@ public class ReportAction extends BaseAction {
 	public Map<String,Object> generate(WebRuntime runtime) throws Exception{
 		String templateName = runtime.getParam("template");
 		Map<String,Object> template = templateService.getByName(templateName);
-		Integer id = (Integer) template.get("id");
-		List colList = templateService.listCols(String.valueOf(id));
+		String id = (String) template.get("id");
+		List colList = templateService.listCols(id);
 		String uuid = service.generate(template, colList);
 		return this.success("uuid", uuid);
 	}
