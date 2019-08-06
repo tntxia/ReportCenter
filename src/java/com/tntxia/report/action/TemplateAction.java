@@ -27,6 +27,7 @@ import com.tntxia.web.mvc.BaseAction;
 import com.tntxia.web.mvc.PageBean;
 import com.tntxia.web.mvc.WebRuntime;
 import com.tntxia.web.mvc.entity.MultipartForm;
+import com.tntxia.web.util.UUIDUtils;
 import com.tntxia.xml.util.Dom4jUtil;
 
 public class TemplateAction extends BaseAction {
@@ -164,11 +165,11 @@ public class TemplateAction extends BaseAction {
 		
 		String template_id = runtime.getParam("template_id");
 		String name = runtime.getParam("name");
-		String display_name = runtime.getParam("field"); 
+		String field = runtime.getParam("field"); 
 		
-		String sql = "insert into report_template_col(name,field,template_id,create_time,last_update) values(?,?,?,now(),now())";
-		
-		dbManager.update(sql, new Object[] {name,display_name,template_id});	
+		String sql = "insert into report_template_col(id,name,field,template_id,create_time,last_update) values(?,?,?,?,now(),now())";
+		String id = UUIDUtils.getUUID();
+		dbManager.update(sql, new Object[] {id, name,field,template_id});	
 		return this.success();
 		
 	}
