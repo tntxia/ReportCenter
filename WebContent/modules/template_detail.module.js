@@ -69,10 +69,11 @@ exports.init = function(){
 				})
 			},
 			add() {
-				this.dataset.rows.push({
+				let colsTable = this.$refs["colsTable"];
+				colsTable.addRow({
 					name: null,
 					field: null
-				})
+				});
 			},
 			save(row) {
 				if (row.id) {
